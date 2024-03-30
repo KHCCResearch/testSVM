@@ -4,5 +4,5 @@ scikit-learn
 PyArabic==0.6.15
 nltk==3.8.1
 pandas
-
+xlrd 
 
