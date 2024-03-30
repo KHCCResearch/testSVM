@@ -2,7 +2,4 @@ numpy==1.23.5
 streamlit==1.20.0
 scikit-learn
 nltk
-re
-string
-nltk.stem.isri
-pyarabic.araby
+
