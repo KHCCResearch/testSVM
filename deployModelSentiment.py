@@ -24,7 +24,6 @@ import nltk
 import re
 import string
 
-import sys
 import nltk
 import re
 from nltk.stem.isri import ISRIStemmer
