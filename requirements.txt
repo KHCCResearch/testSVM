@@ -3,7 +3,6 @@ streamlit==1.20.0
 scikit-learn
 PyArabic==0.6.15
 nltk==3.8.1
-openpyxl==3.0.10
 pandas==2.1.1
 
 
