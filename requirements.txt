@@ -1,6 +1,6 @@
 numpy==1.23.5
 streamlit==1.20.0
 scikit-learn
-pyarabic
+PyArabic==0.6.15
 
 
