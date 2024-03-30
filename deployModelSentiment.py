@@ -12,7 +12,7 @@ import streamlit as st
 
 # loading the saved model
 loaded_model = pickle.load(open('Sentimenttrained_model.sav', 'rb'))
-import import_ipynb
+#import import_ipynb
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
