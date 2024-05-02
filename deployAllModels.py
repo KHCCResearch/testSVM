@@ -8,7 +8,16 @@ Created on Sat Mar 23 21:58:15 2024
 import numpy as np
 import pickle
 import streamlit as st
-
+import tensorflow as tf
+from tensorflow.keras.layers import Embedding
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.preprocessing.text import one_hot
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Bidirectional
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
 
 # loading the saved model
 BiLSTM_model=pickle.load(open('BiLSTMSentimenttrained_model.sav', 'rb'))
