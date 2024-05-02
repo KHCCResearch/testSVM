@@ -199,7 +199,7 @@ def main():
 
     
     # giving a title
-    st.title('Sentiment')
+    st.title('Sentiment Test')
     
     
     # getting the input data from the user
