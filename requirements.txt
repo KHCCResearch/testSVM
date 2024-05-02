@@ -6,5 +6,5 @@ nltk==3.8.1
 pandas
 xlrd 
 openpyxl
- 
+ keras
 
