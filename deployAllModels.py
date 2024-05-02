@@ -18,6 +18,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Bidirectional
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
+import keras.saving.pickle_utils
 
 # loading the saved model
 BiLSTM_model=pickle.load(open('BiLSTMSentimenttrained_model.sav', 'rb'))
