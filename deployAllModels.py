@@ -161,6 +161,96 @@ def preProcess(text):
 
     return text
 
+def testTextBertRepresentation(doc):
+      
+        marked_text = "[CLS] " + doc + " [SEP]"
+
+        # Tokenize our sentence with the BERT tokenizer.
+        tokenized_text = tokenizer.tokenize(marked_text,max_length=512)
+
+        # Print out the tokens.
+        #print (tokenized_text)
+        # Define a new example sentence with multiple meanings of the word "bank"
+
+
+# Map the token strings to their vocabulary indeces.
+        indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
+
+# Display the words with their indeces.
+        #for tup in zip(tokenized_text, indexed_tokens):
+        #    print('{:<12} {:>6,}'.format(tup[0], tup[1]))
+        # Mark each of the 22 tokens as belonging to sentence "1".
+        segments_ids = [1] * len(tokenized_text)
+
+        #print (segments_ids)
+        # Convert inputs to PyTorch tensors
+        tokens_tensor = torch.tensor([indexed_tokens])
+        segments_tensors = torch.tensor([segments_ids])
+        # Run the text through BERT, and collect all of the hidden states produced
+# from all 12 layers.
+        #with torch.no_grad():
+
+        outputs = model(tokens_tensor, segments_tensors)
+        #print("len(outputs)")
+
+        #print(len(outputs))
+        hidden_states = outputs[1]
+        #print(hidden_states)
+        #print(len(hidden_states))
+        ##print ("Number of batches:", len(hidden_states[layer_i]))
+        batch_i = 0
+
+        #print ("Number of tokens:", len(hidden_states[layer_i][batch_i]))
+        token_i = 0
+
+        #print ("Number of hidden units:", len(hidden_states[layer_i][batch_i][token_i]))
+        # Concatenate the tensors for all layers. We use `stack` here to
+        # create a new dimension in the tensor.
+        token_embeddings = torch.stack(hidden_states, dim=0)
+
+        #print(token_embeddings.size())
+        # Remove dimension 1, the "batches".
+        token_embeddings = torch.squeeze(token_embeddings, dim=1)
+
+        token_embeddings.size()
+        # Swap dimensions 0 and 1.
+        token_embeddings = token_embeddings.permute(1,0,2)
+
+        #print(token_embeddings.size())
+        # Stores the token vectors, with shape [22 x 3,072]
+        token_vecs_cat = []
+
+        # `token_embeddings` is a [22 x 12 x 768] tensor.
+
+        # For each token in the sentence...
+        for token in token_embeddings:
+
+
+         cat_vec = torch.cat((token[-1], token[-2], token[-3], token[-4]), dim=0)
+
+         token_vecs_cat.append(cat_vec)
+         #print(token_vecs_cat)
+
+        #print ('Shape is: %d x %d' % (len(token_vecs_cat), len(token_vecs_cat[0])))
+
+# Remove dimension 1, the "batches".
+        token_embeddings = torch.squeeze(token_embeddings, dim=1)
+
+        token_embeddings.size()        #print(cls_head.shape ) #hidden states of each [cls]
+        # `hidden_states` has shape [13 x 1 x 22 x 768]
+
+        # `token_vecs` is a tensor with shape [22 x 768]
+        token_vecs = hidden_states[-2][0]
+
+        # Calculate the average of all  token vectors.
+        sentence_embedding = torch.mean(token_vecs, dim=0)
+    
+
+       return sentence_embedding
+
+tokenizer = AutoTokenizer.from_pretrained("asafaya/bert-base-arabic")
+model = AutoModelForMaskedLM.from_pretrained("asafaya/bert-base-arabic",
+                                  output_hidden_states = True,)
 
 
 def Sentiment_prediction(input_data):
