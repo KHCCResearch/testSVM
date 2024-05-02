@@ -12,11 +12,7 @@ import streamlit as st
 
 # loading the saved model
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
-BiLSTM_model=pickle.load(open('BiLSTMSentimenttrained_model.sav', 'rb'))
-CNN_model=pickle.load(open('CNNentimenttrained_model.sav', 'rb'))
-LSTM_model=pickle.load(open('LSTMSentimenttrained_model.sav', 'rb'))
-RNN_LSTM_model=pickle.load(open('RNN_LSTMSentimenttrained_model.sav', 'rb'))
-RNN_model=pickle.load(open('RNNSentimenttrained_model.sav', 'rb'))
+
 
 #import import_ipynb
 import numpy as np
