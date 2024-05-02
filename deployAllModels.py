@@ -12,8 +12,6 @@ import streamlit as st
 
 # loading the saved model
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
-
-
 #import import_ipynb
 import numpy as np
 import pandas as pd
@@ -156,7 +154,20 @@ def preProcess(text):
     text=text.strip()
 
     return text
+stt = ISRIStemmer()
+stopWords=pd.read_excel('RemovedKeywords.xls',1)
+stopWordList=stopWords.word
+train_X=[]
+test_X=[]
+allComments=[]
+print("testing data")
 
+for i in range(0, len(trainComments)):
+    processedComment = preProcess(trainComments[i])
+    #processedComment = ' '.join(processedComment)
+    train_X.append(processedComment)
+    allComments.append(processedComment)
+# creating a function for Prediction
 
 def Sentiment_prediction(input_data):
     
@@ -177,19 +188,9 @@ def Sentiment_prediction(input_data):
    prediction = loaded_model.predict(X_test_tf)
    print(prediction)
    return prediction
-  
-
-
- 
+   
     
-stt = ISRIStemmer()
-stopWords=pd.read_excel('RemovedKeywords.xls',1)
-stopWordList=stopWords.word
-test_X=[]
-
-
-
-
+  
 def main():
     
     
@@ -219,12 +220,9 @@ def main():
     
     if st.button('Test Result'):
         diagnosis = Sentiment_prediction(commentText)
+        
+        
     st.success(diagnosis)
-
-   #if st.button('BILSTM'):
-   #     diagnosis = BILSTM_prediction(commentText)
-   #st.success(diagnosis)
-     
     
     
     
