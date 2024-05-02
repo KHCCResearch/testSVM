@@ -278,10 +278,13 @@ def BILSTM_prediction(input_data):
     
    processedComment=preProcess(input_data.encode('utf-8').decode('utf-8'))
    test_X.append(processedComment)
+   #testTextBertRepresentation(processedComment))
+   embedded_docs_Xtest1 = tokenizer.texts_to_sequences(test_X)
+   padded_docs_Xtest = pad_sequences(embedded_docs_Xtest1, maxlen=length_long_sentence, padding='post')
 
-
+   embedded_docs_Xtest=padded_docs_Xtest
   
-   prediction = BiLSTM_model.predict(X_test_tf)
+   prediction = BiLSTM_model.predict(embedded_docs_Xtest)
    print(prediction)
    return prediction
  
