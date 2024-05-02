@@ -12,6 +12,12 @@ import streamlit as st
 
 # loading the saved model
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
+BiLSTM_model=pickle.load(open('BiLSTMSentimenttrained_model.sav', 'rb'))
+CNN_model=pickle.load(open('CNNentimenttrained_model.sav', 'rb'))
+LSTM_model=pickle.load(open('LSTMSentimenttrained_model.sav', 'rb'))
+RNN_LSTM_model=pickle.load(open('RNN_LSTMSentimenttrained_model.sav', 'rb'))
+RNN_model=pickle.load(open('RNNSentimenttrained_model.sav', 'rb'))
+
 #import import_ipynb
 import numpy as np
 import pandas as pd
@@ -154,20 +160,8 @@ def preProcess(text):
     text=text.strip()
 
     return text
-stt = ISRIStemmer()
-stopWords=pd.read_excel('RemovedKeywords.xls',1)
-stopWordList=stopWords.word
-train_X=[]
-test_X=[]
-allComments=[]
-print("testing data")
 
-for i in range(0, len(trainComments)):
-    processedComment = preProcess(trainComments[i])
-    #processedComment = ' '.join(processedComment)
-    train_X.append(processedComment)
-    allComments.append(processedComment)
-# creating a function for Prediction
+
 
 def Sentiment_prediction(input_data):
     
@@ -188,9 +182,35 @@ def Sentiment_prediction(input_data):
    prediction = loaded_model.predict(X_test_tf)
    print(prediction)
    return prediction
-   
-    
   
+
+def BILSTM_prediction(input_data):
+    
+   processedComment=preProcess(input_data.encode('utf-8').decode('utf-8'))
+   test_X.append(processedComment)
+
+
+  
+   prediction = BiLSTM_model.predict(X_test_tf)
+   print(prediction)
+   return prediction
+ 
+    
+stt = ISRIStemmer()
+stopWords=pd.read_excel('RemovedKeywords.xls',1)
+stopWordList=stopWords.word
+train_X=[]
+test_X=[]
+allComments=[]
+print("testing data")
+
+for i in range(0, len(trainComments)):
+    processedComment = preProcess(trainComments[i])
+    #processedComment = ' '.join(processedComment)
+    train_X.append(processedComment)
+    allComments.append(processedComment)
+# creating a function for Prediction
+
 def main():
     
     
@@ -220,9 +240,12 @@ def main():
     
     if st.button('Test Result'):
         diagnosis = Sentiment_prediction(commentText)
-        
-        
     st.success(diagnosis)
+
+   if st.button('BILSTM'):
+        diagnosis = BILSTM_prediction(commentText)
+   st.success(diagnosis)
+     
     
     
     
