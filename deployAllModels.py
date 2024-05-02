@@ -335,9 +335,9 @@ def main():
         diagnosis = Sentiment_prediction(commentText)
     st.success(diagnosis)
 
-   if st.button('BILSTM'):
-        diagnosis = BILSTM_prediction(commentText)
-   st.success(diagnosis)
+   #if st.button('BILSTM'):
+   #     diagnosis = BILSTM_prediction(commentText)
+   #st.success(diagnosis)
      
     
     
