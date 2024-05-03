@@ -19,12 +19,8 @@ from tensorflow.keras.layers import Bidirectional
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.models import load_model
-import subprocess
-import os
-#if not os.path.isfile('model.h5'):
-subprocess.run(['curl --output model.h5 "https://github.com/KHCCResearch/testSVM/BiLSTMSentimenttrained_model.h5"'], shell=True)
-# loading the saved model
-BiLSTM_model=load_model('model.h5', compile=False)
+
+BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5', compile=False)
 
 
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
