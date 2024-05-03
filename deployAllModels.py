@@ -18,6 +18,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Bidirectional
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.models import load_model
 
 # loading the saved model
 BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5')
