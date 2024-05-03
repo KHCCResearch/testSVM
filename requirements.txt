@@ -7,4 +7,5 @@ pandas
 xlrd 
 openpyxl
 keras
-tensorflow
+tensorflow==2.9.1
+tensorflow_cpu==2.9.1
