@@ -21,7 +21,7 @@ from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.models import load_model
 
 # loading the saved model
-BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5')
+BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5', compile=False)
 
 
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
