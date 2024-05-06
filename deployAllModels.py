@@ -19,7 +19,7 @@ from tensorflow.keras.layers import Bidirectional
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.models import load_model
-
+import os
 
 
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
