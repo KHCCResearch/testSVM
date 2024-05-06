@@ -20,7 +20,7 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.models import load_model
 import os
-
+import urllib
 
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
 #import import_ipynb
