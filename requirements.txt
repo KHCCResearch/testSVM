@@ -8,3 +8,5 @@ xlrd
 openpyxl
 keras
 tensorflow
+urllib
+os
