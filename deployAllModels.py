@@ -200,13 +200,14 @@ def Sentiment_prediction(input_data):
    print(prediction)
    return prediction
    
-def load_model():
+def load_modell():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('BiLSTMSentimenttrained_model.h5', 'model.h5')
     return tensorflow.keras.models.load_model('model.h5')  
 
 load_model()
-#BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5')
+BiLSTM_model=load_modell()
+#load_model('BiLSTMSentimenttrained_model.h5')
 
 def main():
     
