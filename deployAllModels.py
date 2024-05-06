@@ -205,7 +205,7 @@ def load_modell():
         urllib.request.urlretrieve('BiLSTMSentimenttrained_model.h5', 'model.h5')
     return tensorflow.keras.models.load_model('model.h5')  
 
-load_model()
+#load_model()
 BiLSTM_model=load_modell()
 #load_model('BiLSTMSentimenttrained_model.h5')
 
