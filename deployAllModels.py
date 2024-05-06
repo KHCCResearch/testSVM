@@ -202,7 +202,7 @@ def Sentiment_prediction(input_data):
    
 def load_modell():
     if not os.path.isfile('model.h5'):
-        urllib.request.urlretrieve('BiLSTMSentimenttrained_model.h5', 'model.h5')
+        urllib.request.urlretrieve('https://github.com/KHCCResearch/testSVM/blob/7e21932a46be1aafaada7edba522082845a26006/BiLSTMSentimenttrained_model.h5', 'model.h5')
     return tensorflow.keras.models.load_model('model.h5')  
 
 #load_model()
