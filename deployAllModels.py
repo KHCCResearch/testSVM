@@ -20,7 +20,6 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.models import load_model
 
-BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5')
 
 
 loaded_model = pickle.load(open('Sentimenttrained_model2.sav', 'rb'))
@@ -201,8 +200,14 @@ def Sentiment_prediction(input_data):
    print(prediction)
    return prediction
    
-    
-  
+def load_model():
+    if not os.path.isfile('model.h5'):
+        urllib.request.urlretrieve('BiLSTMSentimenttrained_model.h5', 'model.h5')
+    return tensorflow.keras.models.load_model('model.h5')  
+
+load_model()
+#BiLSTM_model=load_model('BiLSTMSentimenttrained_model.h5')
+
 def main():
     
     
